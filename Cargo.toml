@@ -1,5 +1,5 @@
 [package]
-name = "rust_text_editor"
+name    = "rust_text_editor"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,4 +9,5 @@ edition = "2021"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
+cargo-watch  = "8.5.2"
 wasm-bindgen = "0.2"

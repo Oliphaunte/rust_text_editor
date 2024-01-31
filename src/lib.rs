@@ -42,7 +42,15 @@ impl TextEditor {
         let (first_part, rest) = self.content.split_at(start);
         let (target, last_part) = rest.split_at(end - start);
 
-        let formatted = format!("{}{}{}", marker, target, marker);
-        self.content = [first_part, &formatted, last_part].concat();
+        if target.starts_with(marker) && target.ends_with(marker) {
+            // Remove the formatting
+            let stripped_length = target.len() - (2 * marker.len());
+            let stripped_target = &target[marker.len()..marker.len() + stripped_length];
+            self.content = [first_part, stripped_target, last_part].concat();
+        } else {
+            // Apply the formatting
+            let formatted = format!("{}{}{}", marker, target, marker);
+            self.content = [first_part, &formatted, last_part].concat();
+        }
     }
 }
